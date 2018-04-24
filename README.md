@@ -10,3 +10,18 @@ We plan to create few features to the how much the subject of the topic is new a
 - [ ] define a metric for assessing the weight of a user on the community.
 - [ ] define a metric to rate the user trend leading.
 - [ ] combine the trendy/not trendy output of the topic modeling with the user data and train model to determine if the post topic going to be trendy.
+
+# Metrics
+
+## Trendy to be tag
+If was used less than three months after the first use of the tag,
+If the tag showed an increased amount of uses on a monthly moving average for the next year
+
+## Trendy to be post topic
+If the post has tags that are to be trendy
+
+## User topic focus
+
+## User community weight
+
+## User trend leadership
