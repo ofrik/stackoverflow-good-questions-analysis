@@ -1,6 +1,12 @@
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 import pandas as pd
+import re
+import numpy as np
+from datetime import datetime
+import time
+from dateutil.relativedelta import relativedelta
+
 
 def _read_xml_dataframe(file):
     tree = ET.parse(file)
@@ -8,11 +14,12 @@ def _read_xml_dataframe(file):
     data = [child.attrib for child in root]
     df = pd.DataFrame(data)
     df["Id"] = df["Id"].apply(pd.to_numeric)
-    df.set_index("Id",inplace=True)
+    df.set_index("Id", inplace=True)
     return df
 
+
 def read_tags():
-    df =_read_xml_dataframe('data/Tags.xml')
+    df = _read_xml_dataframe('data/Tags.xml')
     df["Count"] = df["Count"].apply(pd.to_numeric)
     df["ExcerptPostId"] = df["ExcerptPostId"].apply(pd.to_numeric)
     df["WikiPostId"] = df["WikiPostId"].apply(pd.to_numeric)
@@ -33,8 +40,15 @@ def read_users():
 
 def read_posts():
     df = _read_xml_dataframe('data/Posts.xml')
+
     def _remove_html_tags(x):
-        return BeautifulSoup(x,"lxml").get_text()
+        return BeautifulSoup(x, "lxml").get_text()
+
+    def _to_timestamp(x):
+        if x is np.nan:
+            return x
+        return (int)(pd.to_datetime(x).to_pydatetime().timestamp())
+
     df["Body"] = df["Body"].apply(_remove_html_tags)
     df["AcceptedAnswerId"] = df["AcceptedAnswerId"].apply(pd.to_numeric)
     df["AnswerCount"] = df["AnswerCount"].apply(pd.to_numeric)
@@ -46,10 +60,10 @@ def read_posts():
     df["PostTypeId"] = df["PostTypeId"].apply(pd.to_numeric)
     df["Score"] = df["Score"].apply(pd.to_numeric)
     df["ViewCount"] = df["ViewCount"].apply(pd.to_numeric)
-    df["LastActivityDate"] = df["LastActivityDate"].apply(pd.to_datetime)
-    df["CreationDate"] = df["CreationDate"].apply(pd.to_datetime)
-    df["CommunityOwnedDate"] = df["CommunityOwnedDate"].apply(pd.to_datetime)
-    df["ClosedDate"] = df["ClosedDate"].apply(pd.to_datetime)
+    df["LastActivityDate"] = df["LastActivityDate"].apply(_to_timestamp)
+    df["CreationDate"] = df["CreationDate"].apply(_to_timestamp)
+    df["CommunityOwnedDate"] = df["CommunityOwnedDate"].apply(_to_timestamp)
+    df["ClosedDate"] = df["ClosedDate"].apply(_to_timestamp)
     return df
 
 
@@ -73,6 +87,18 @@ def read_badges():
     return _read_xml_dataframe('data/Badges.xml')
 
 
+def extract_tags(tags_string):
+    pattern = re.compile('<(.*?)>')
+    return pattern.findall(tags_string)
+
+
+def add_months(d, n=1):
+    return (datetime.datetime.fromtimestamp(d)+datetime.timedelta(n*365/12)).timestamp()
+
+
 if __name__ == '__main__':
-    read_posts()
+    import datetime
+
+    posts_df = read_posts()
+    add_months(posts_df["CreationDate"].values[0], 3)
     pass
