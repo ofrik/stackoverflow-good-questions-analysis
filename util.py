@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 import pandas as pd
 
 def _read_xml_dataframe(file):
@@ -17,7 +18,11 @@ def read_users():
 
 
 def read_posts():
-    return _read_xml_dataframe('data/Posts.xml')
+    df = _read_xml_dataframe('data/Posts.xml')
+    def _remove_html_tags(x):
+        return BeautifulSoup(x,"lxml").get_text()
+    df["Body"] = df["Body"].apply(_remove_html_tags)
+    return df
 
 
 def read_post_history():
@@ -45,5 +50,5 @@ def read_badges():
 
 
 if __name__ == '__main__':
-    read_tags()
+    read_posts()
     pass
