@@ -7,14 +7,28 @@ def _read_xml_dataframe(file):
     root = tree.getroot()
     data = [child.attrib for child in root]
     df = pd.DataFrame(data)
+    df["Id"] = df["Id"].apply(pd.to_numeric)
+    df.set_index("Id",inplace=True)
     return df
 
 def read_tags():
-    return _read_xml_dataframe('data/Tags.xml')
+    df =_read_xml_dataframe('data/Tags.xml')
+    df["Count"] = df["Count"].apply(pd.to_numeric)
+    df["ExcerptPostId"] = df["ExcerptPostId"].apply(pd.to_numeric)
+    df["WikiPostId"] = df["WikiPostId"].apply(pd.to_numeric)
+    return df
 
 
 def read_users():
-    return _read_xml_dataframe('data/Users.xml')
+    df = _read_xml_dataframe('data/Users.xml')
+    df["Reputation"] = df["Reputation"].apply(pd.to_numeric)
+    df["Views"] = df["Views"].apply(pd.to_numeric)
+    df["UpVotes"] = df["UpVotes"].apply(pd.to_numeric)
+    df["DownVotes"] = df["DownVotes"].apply(pd.to_numeric)
+    df["AccountId"] = df["AccountId"].apply(pd.to_numeric)
+    df["CreationDate"] = df["CreationDate"].apply(pd.to_datetime)
+    df["LastAccessDate"] = df["LastAccessDate"].apply(pd.to_datetime)
+    return df
 
 
 def read_posts():
@@ -22,6 +36,20 @@ def read_posts():
     def _remove_html_tags(x):
         return BeautifulSoup(x,"lxml").get_text()
     df["Body"] = df["Body"].apply(_remove_html_tags)
+    df["AcceptedAnswerId"] = df["AcceptedAnswerId"].apply(pd.to_numeric)
+    df["AnswerCount"] = df["AnswerCount"].apply(pd.to_numeric)
+    df["CommentCount"] = df["CommentCount"].apply(pd.to_numeric)
+    df["FavoriteCount"] = df["FavoriteCount"].apply(pd.to_numeric)
+    df["LastEditorUserId"] = df["LastEditorUserId"].apply(pd.to_numeric)
+    df["OwnerUserId"] = df["OwnerUserId"].apply(pd.to_numeric)
+    df["ParentId"] = df["ParentId"].apply(pd.to_numeric)
+    df["PostTypeId"] = df["PostTypeId"].apply(pd.to_numeric)
+    df["Score"] = df["Score"].apply(pd.to_numeric)
+    df["ViewCount"] = df["ViewCount"].apply(pd.to_numeric)
+    df["LastActivityDate"] = df["LastActivityDate"].apply(pd.to_datetime)
+    df["CreationDate"] = df["CreationDate"].apply(pd.to_datetime)
+    df["CommunityOwnedDate"] = df["CommunityOwnedDate"].apply(pd.to_datetime)
+    df["ClosedDate"] = df["ClosedDate"].apply(pd.to_datetime)
     return df
 
 
@@ -31,10 +59,6 @@ def read_post_history():
 
 def read_votes():
     return _read_xml_dataframe('data/Votes.xml')
-
-
-def read_users():
-    return _read_xml_dataframe('data/Users.xml')
 
 
 def read_post_links():
