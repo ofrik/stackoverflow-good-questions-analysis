@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
+from datetime import datetime
+from datetime import timedelta
+
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import numpy as np
-from datetime import datetime
-import time
-from dateutil.relativedelta import relativedelta
 
 
 def _read_xml_dataframe(file):
@@ -93,12 +93,10 @@ def extract_tags(tags_string):
 
 
 def add_months(d, n=1):
-    return (datetime.datetime.fromtimestamp(d)+datetime.timedelta(n*365/12)).timestamp()
+    return (datetime.fromtimestamp(d)+timedelta(n*365/12)).timestamp()
 
 
 if __name__ == '__main__':
-    import datetime
-
     posts_df = read_posts()
     add_months(posts_df["CreationDate"].values[0], 3)
     pass
