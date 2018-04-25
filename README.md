@@ -6,7 +6,6 @@ We plan to create few features to the how much the subject of the topic is new a
 - [ ] label the posts for potential trendy & not trendy.
 - [ ] clean posts content and create BOW from it.
 - [ ] train labeled topic modeling using the posts BOW and their labels.
-- [ ] define a metric for assessing the focus of a user in a topic.
 - [ ] define a metric for assessing the weight of a user on the community.
 - [ ] define a metric to rate the user trend leading.
 - [ ] combine the trendy/not trendy output of the topic modeling with the user data and train model to determine if the post topic going to be trendy.
@@ -15,13 +14,18 @@ We plan to create few features to the how much the subject of the topic is new a
 
 ## Trendy to be tag
 If was used less than three months after the first use of the tag,
-If the tag showed an increased amount of uses on a monthly moving average for the next year
+If the tag existed a year after
 
 ## Trendy to be post topic
 If the post has tags that are to be trendy
 
-## User topic focus
-
 ## User community weight
+How many views on his posts - x   
+Upvote/downvote ratio - y   
+Number of posts - z   
+for now - (norm(x)+norm(y)+norm(z))/3  
 
 ## User trend leadership
+Trendy posts ratio relative to himself - x - trendy/not-trendy  
+Trendy posts compared to everyone - y - the percentage  
+for now - (x+y)/2
