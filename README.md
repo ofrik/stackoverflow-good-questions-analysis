@@ -1,31 +1,28 @@
-# stackoverflow-trends
-We plan to create few features to the how much the subject of the topic is new and going to be trendy by using labeled topic modeling in order to evaluate the trend potential of a post, create a rating for how major each user in defining and leading new trends and combine these using machine learning to determine new trends.
+# stackoverflow-good-questions-analysis
+We plan to analyze what's making a good/bad question/answer in stackoverflow. Try to come up with features that correlate with high probability of highly/low ranked questions/answers.
+<!-- We plan to create few features to the how much the subject of the topic is new and going to be trendy by using labeled topic modeling in order to evaluate the trend potential of a post, create a rating for how major each user in defining and leading new trends and combine these using machine learning to determine new trends. -->
 
-# TODO's
-- [ ] define a metric for labeling a post/tag new that will become trendy.
-- [ ] label the posts for potential trendy & not trendy.
-- [ ] clean posts content and create BOW from it.
-- [ ] train labeled topic modeling using the posts BOW and their labels.
-- [ ] define a metric for assessing the weight of a user on the community.
-- [ ] define a metric to rate the user trend leading.
-- [ ] combine the trendy/not trendy output of the topic modeling with the user data and train model to determine if the post topic going to be trendy.
+# TODO's Text Analysis
+- [ ] Check the score distribution of questions and define highly/low ranked questions threshold.
+- [ ] Check the score distribution of answers and define highly/low ranked answers threshold.
+- [ ] Label questions for high/low/regular
+- [ ] Label answers for high/low/regular
+- [ ] Extract structural features from the questions/answers such as:
+- - [ ] length
+- - [ ] POS frequency (for text only)
+- - [ ] number of links
+- - [ ] code / text ratio
+- - [ ] number of comments?
+For answers only:
+- - [ ] question / answer length ratio
+- - [ ] question /answer code ratio
+- - [ ] question - answer time difference
+- [ ] Extract more complicated features such as:
+- - [ ] tf-idf
+- - [ ] topics correlation (via topic modeling)
+- [ ] Train a regression model to predict the score of question/answer
 
-# Metrics
+Note: I think the model will perform better if we will split the questions from the answers in the training as i don't think a good question features will work well for answer.
 
-## Trendy to be tag
-If was used less than three months after the first use of the tag,
-If the tag existed a year after
+# TODO's Network Analysis
 
-## Trendy to be post topic
-If the post has tags that are to be trendy
-
-## User community weight
-How many views on his posts - x   
-Upvote/downvote ratio - y   
-Number of posts - z   
-for now - (norm(x)+norm(y)+norm(z))/3  
-
-## User trend leadership
-Trendy posts ratio relative to himself - x - trendy/not-trendy  
-Trendy posts compared to everyone - y - the percentage  
-for now - (x+y)/2
