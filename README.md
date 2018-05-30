@@ -7,12 +7,11 @@ We plan to analyze what's making a good/bad question/answer in stackoverflow. Tr
 - [x] Check the score distribution of answers and define highly/low ranked answers threshold.
 - [x] Label questions for high/low/regular
 - [x] Label answers for high/low/regular
-- [ ] Extract structural features from the questions/answers such as:
-- - [ ] length
-- - [ ] POS frequency (for text only)
-- - [ ] number of links
-- - [ ] code / text ratio
-- - [ ] number of comments?
+- [x] Extract structural features from the questions/answers such as:
+- - [x] length
+- - [x] POS frequency (for text only)
+- - [x] number of links
+- - [x] code / text ratio
 For answers only:
 - - [ ] question / answer length ratio
 - - [ ] question /answer code ratio
