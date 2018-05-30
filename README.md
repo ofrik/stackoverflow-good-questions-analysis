@@ -3,10 +3,10 @@ We plan to analyze what's making a good/bad question/answer in stackoverflow. Tr
 <!-- We plan to create few features to the how much the subject of the topic is new and going to be trendy by using labeled topic modeling in order to evaluate the trend potential of a post, create a rating for how major each user in defining and leading new trends and combine these using machine learning to determine new trends. -->
 
 # TODO's Text Analysis
-- [ ] Check the score distribution of questions and define highly/low ranked questions threshold.
-- [ ] Check the score distribution of answers and define highly/low ranked answers threshold.
-- [ ] Label questions for high/low/regular
-- [ ] Label answers for high/low/regular
+- [x] Check the score distribution of questions and define highly/low ranked questions threshold.
+- [x] Check the score distribution of answers and define highly/low ranked answers threshold.
+- [x] Label questions for high/low/regular
+- [x] Label answers for high/low/regular
 - [ ] Extract structural features from the questions/answers such as:
 - - [ ] length
 - - [ ] POS frequency (for text only)
