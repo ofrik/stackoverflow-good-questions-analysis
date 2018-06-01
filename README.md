@@ -17,8 +17,9 @@ For answers only:
 - - [x] question /answer code ratio
 - - [x] question - answer time difference
 - [ ] Extract more complicated features such as:
-- - [ ] tf-idf
-- - [ ] topics correlation (via topic modeling)
+- - [x] tf-idf
+- - [ ] topics correlation (via topic modeling) between the answer and the question - answer only
+- - [ ] topics distribution
 - [ ] Train a regression model to predict the score of question/answer
 
 Note: I think the model will perform better if we will split the questions from the answers in the training as i don't think a good question features will work well for answer.
