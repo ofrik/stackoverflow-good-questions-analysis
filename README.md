@@ -13,9 +13,9 @@ We plan to analyze what's making a good/bad question/answer in stackoverflow. Tr
 - - [x] number of links
 - - [x] code / text ratio
 For answers only:
-- - [ ] question / answer length ratio
-- - [ ] question /answer code ratio
-- - [ ] question - answer time difference
+- - [x] question / answer length ratio
+- - [x] question /answer code ratio
+- - [x] question - answer time difference
 - [ ] Extract more complicated features such as:
 - - [ ] tf-idf
 - - [ ] topics correlation (via topic modeling)
